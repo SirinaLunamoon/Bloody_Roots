@@ -20,7 +20,7 @@ namespace Roots
             _letters.Clear();
             Instance = null;
         }
-
+        
         public void RegisterLetterBehaviour(LetterBehaviour lb)
         {
             if (_letters.ContainsKey(lb.Letter))

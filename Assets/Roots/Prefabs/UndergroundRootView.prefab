@@ -54,7 +54,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 2d0ab815621b0403c9ac6855ae147420, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,14 +85,23 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.008106232
+        value: 0.47878838
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.44324324
+        value: 0.47878784
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -125,10 +134,10 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 3
+    numCapVertices: 4
     alignment: 0
-    textureMode: 0
+    textureMode: 2
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
@@ -147,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 3506526135241946336}
   _targetTransform: {fileID: 5046798862744129005}
+  _letters: 
 --- !u!1 &8967567293855389331
 GameObject:
   m_ObjectHideFlags: 0

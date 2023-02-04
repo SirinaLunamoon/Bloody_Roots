@@ -4,5 +4,6 @@ namespace Roots
     {
         public UndergroundRootView Connection;
         public LetterBehaviour Children;
+        public bool CanGrow => Connection.IsUpgradable;
     }
 }
