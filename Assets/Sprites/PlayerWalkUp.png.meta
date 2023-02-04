@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 13e1ff0af0f0d2c4b8e0e80eeb8b9d6c
+guid: e96266f6621b95d499ff700ace5e3721
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,12 +117,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KilledPlayer_0
+      name: PlayerWalkUp_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 29
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -131,19 +131,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c9e89c1dddca6249a50525b132a394b
-      internalID: -1154992067
+      spriteID: f210cf217d6daa049ac620bcf97e6fc9
+      internalID: -2030070602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KilledPlayer_1
+      name: PlayerWalkUp_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 29
         y: 0
-        width: 64
+        width: 29
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -152,19 +152,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 817818df4ed657b4a941d5560ec7c2ea
-      internalID: -1925701410
+      spriteID: f0314032c7d9d2a4ababa68b26546b1f
+      internalID: -1115077993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KilledPlayer_2
+      name: PlayerWalkUp_2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 58
         y: 0
-        width: 64
+        width: 29
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -173,19 +173,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bda13084b7d6c047a06d7596eee36e2
-      internalID: -303147823
+      spriteID: 207f735edd7134b4dbdc5fc7b2727d98
+      internalID: 116586949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KilledPlayer_3
+      name: PlayerWalkUp_3
       rect:
         serializedVersion: 2
-        x: 192
+        x: 87
         y: 0
-        width: 64
+        width: 29
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88cffe760f5f21c48b518bc2bdb5f657
-      internalID: 142542939
+      spriteID: a29fe691e6228104facd7d2874ebc53b
+      internalID: -1432068848
       vertices: []
       indices: 
       edges: []
@@ -211,10 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KilledPlayer_1: -1925701410
-      KilledPlayer_0: -1154992067
-      KilledPlayer_2: -303147823
-      KilledPlayer_3: 142542939
+      PlayerWalkUp_1: -1115077993
+      PlayerWalkUp_3: -1432068848
+      PlayerWalkUp_0: -2030070602
+      PlayerWalkUp_2: 116586949
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
