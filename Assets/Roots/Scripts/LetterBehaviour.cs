@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Roots.Mini;
 using UnityEngine;
 
 namespace Roots
@@ -149,6 +150,7 @@ namespace Roots
         {
             if (_isCenter)
             {
+                HeartBehaviour.Instance.GameOver();
                 Debug.Log("GAME OVER");
                 return;
             }

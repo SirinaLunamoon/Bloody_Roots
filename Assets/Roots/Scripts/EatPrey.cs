@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Roots
@@ -8,9 +9,12 @@ namespace Roots
     {
         [SerializeField] private LineRenderer _lr;
         [SerializeField] private Transform _followTransform;
-        
+        [SerializeField] private GameObject _additional;
+
+
         public void Setup(LetterBehaviour letter, Prey prey, Action onFinished)
         {
+            Instantiate(_additional, prey.transform.position, quaternion.identity);
             var preyPos = prey.transform.position;
             var startPos = letter.transform.position;
             var vec = startPos - preyPos;

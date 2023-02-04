@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lr: {fileID: 8941734877981657507}
   _followTransform: {fileID: 8941734878587031444}
+  _additional: {fileID: 5032918838673077908, guid: c6c74633be55e2546a828fc6aeb0960c, type: 3}
 --- !u!120 &8941734877981657507
 LineRenderer:
   m_ObjectHideFlags: 0
