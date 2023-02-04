@@ -10,6 +10,7 @@ namespace Roots
         [FormerlySerializedAs("_undergroundRootViewPrefab")] public UndergroundRootView UndergroundRootViewPrefab;
         public Prey PreyPrefab;
         public EatPrey EatPreyPrefab;
+        public BombBehaviour BombPrefab;
         
         void Awake()
         {

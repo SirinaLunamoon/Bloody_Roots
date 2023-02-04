@@ -28,6 +28,8 @@ namespace Roots
             private set;
         }
 
+        public bool NoChildren => _children.Count == 0; 
+
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -119,6 +121,12 @@ namespace Roots
             other.OnPoisoned += StartPoisoned;
         }
 
+        public void Poison()
+        {
+            //OnDecayed?.Invoke(this);
+            StartPoisoned();
+        }
+
         private void RemoveConnection(LetterBehaviour lb)
         {
             var x = _children.FirstOrDefault(c => c.Children == lb);
@@ -136,7 +144,25 @@ namespace Roots
         {
             Kill();
         }
-        
-        void StartPoisoned() { }
+
+        void StartPoisoned()
+        {
+            if (_isCenter)
+            {
+                Debug.Log("GAME OVER");
+                return;
+            }
+
+            var par = _parent?._children.FirstOrDefault(c => c.Connection.LastLetter == this._letter);
+            if (par != null)
+            {
+                par.Connection.Poison(_parent.Poison);
+                StartDecay(this);
+            }
+            else
+            {
+                par.Children.Poison();
+            }
+        }
     }
 }

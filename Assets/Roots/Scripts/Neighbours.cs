@@ -31,7 +31,7 @@ namespace Roots
                 case KeyCode.Y:
                     return new[] { KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.T, KeyCode.U, KeyCode.G, KeyCode.H };
                 case KeyCode.U:
-                    return new[] { KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Y, KeyCode.I, KeyCode.J, KeyCode.K };
+                    return new[] { KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Y, KeyCode.I, KeyCode.H, KeyCode.J };
                 case KeyCode.I:
                     return new[] { KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.U, KeyCode.O, KeyCode.J, KeyCode.K };
                 case KeyCode.O:

@@ -48,7 +48,7 @@ namespace Roots
                         behaviour.Kill();
                     }
                 }
-                else
+                else if(!behaviour.ActionBlocker.IsBlocked)
                 {
                     var possibleParent = FindPossibleParentForKey(kc);
                     if (possibleParent != null)
@@ -61,6 +61,18 @@ namespace Roots
             {
                 Debug.LogError($"Cannot find letter behaviour for {kc}!");
             }
+        }
+
+        public LetterBehaviour FindBombProposition()
+        {
+            var rootLetters = Neighbours.For(KeyCode.G);
+            var possible = _letters.Values.Where(l => l.HasRoot && !l._isCenter && l.NoChildren).ToList();
+            possible.RemoveAll(p => rootLetters.Contains(p.Letter));
+            if (possible.Count > 0)
+            {
+                return possible[Random.Range(0, possible.Count)];
+            }
+            return null;
         }
 
         private LetterBehaviour FindPossibleParentForKey(KeyCode kc)

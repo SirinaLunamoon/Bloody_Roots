@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -38,6 +37,13 @@ namespace Roots
                 {
                     onFinished?.Invoke();
                 });
+        }
+
+        public void Poison(Action onFinish)
+        {
+            DOTween.Sequence()
+                .Join(_lineRenderer.material.DOColor(Color.green, 1f))
+                .OnComplete(() => onFinish?.Invoke());
         }
 
         public void UpgradeTo(LetterBehaviour letterBehaviour, Action onFinished)

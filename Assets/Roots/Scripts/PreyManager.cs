@@ -8,7 +8,7 @@ namespace Roots
 {
     public class PreyManager : MonoBehaviour
     {
-        
+        private float _timeToNextSpawn = 5f;
         public static PreyManager Instance
         {
             get; private set;
@@ -44,7 +44,6 @@ namespace Roots
                     closest = dist;
                     found = prey;
                 }
-
             }
 
             return found;
@@ -52,8 +51,12 @@ namespace Roots
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            _timeToNextSpawn -= Time.deltaTime;
+
+            if (_timeToNextSpawn < 0f || Input.GetKeyDown(KeyCode.Return))
             {
+                if(_timeToNextSpawn < 0f)
+                    _timeToNextSpawn = Random.Range(SetupManager.Access._spawnMin, SetupManager.Access._spawnMax);
                 var possibleSpawns = _registeredSpawns.Where(s => s._direction == false).ToList();
                 var selectedSpawn = possibleSpawns.ElementAt(Random.Range(0, possibleSpawns.Count));
 
@@ -68,6 +71,7 @@ namespace Roots
         public void RegisterSpawn(PreySpawn preySpawn)
         {
             _registeredSpawns.Add(preySpawn);
+            
         }
     }
 }
