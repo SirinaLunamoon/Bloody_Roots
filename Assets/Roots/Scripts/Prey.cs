@@ -44,7 +44,8 @@ namespace Roots
         public void Halt()
         {
             transform.localScale = Vector3.one * 3f;
-            _animator?.StopPlayback();
+            if(_animator)
+                _animator?.StopPlayback();
             Destroy(_animator);
             seq.Kill();
             DOTween.Sequence()

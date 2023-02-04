@@ -52,20 +52,19 @@ namespace Roots
             prey.Halt();
             var eat = Instantiate(PrefabsManager.Instance.EatPreyPrefab);
             eat.Setup(this, prey, null);
-            //Destroy(prey.gameObject);
             Debug.Log("POINTS!");
-            // Play Eat Animation
-            // Destroy Prey
         }
 
         public void BadDecision()
         {
+            ActionBlocker.AddBlocker(this);
             var badDecision = Instantiate(PrefabsManager.Instance.BadDecisionPrefab, transform.position, quaternion.identity);
             badDecision.Setup(this, Kill);
         }
 
-        public void Kill()
+        private void Kill()
         {
+            ActionBlocker.RemoveBlocker(this);
             var seq = DOTween.Sequence()
                 .Append(_spriteRenderer.DOColor(Color.red, SetupManager.Access._timeToDecay))
                 .OnStart(() => ActionBlocker.AddBlocker("KILL"))
@@ -168,8 +167,15 @@ namespace Roots
             var par = _parent?._children.FirstOrDefault(c => c.Connection.LastLetter == this._letter);
             if (par != null)
             {
-                par.Connection.Poison(_parent.Poison);
-                StartDecay(this);
+                if (par.Children.ActionBlocker.IsBlocked == false)
+                {
+                    par.Connection.Poison(_parent.Poison);
+                    StartDecay(this);
+                }
+                else
+                {
+                    AudioClipContainer.Instance.StopHazard();
+                }
             }
             else
             {

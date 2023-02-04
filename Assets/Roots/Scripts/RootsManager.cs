@@ -54,6 +54,7 @@ namespace Roots
                     if (possibleParent != null)
                     {
                         possibleParent.GrowChildRoot(behaviour);
+                        AudioClipContainer.Instance.PlayRandomGrowClip();
                     }
                 }
             }
