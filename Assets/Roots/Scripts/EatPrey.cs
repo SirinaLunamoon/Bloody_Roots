@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Roots.Energy;
 using Roots.Mini;
 using Unity.Mathematics;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace Roots
             DOTween.Sequence().PrependInterval(.3f).OnComplete(() =>
                 _as.PlayOneShot(AudioClipContainer.Instance.RandomScream())
             );
+            EnergyManager.Instance.AddEnergy(SetupManager.Access.EnergyPerEnemy);
             var preyPos = prey.transform.position;
             var startPos = letter.transform.position;
             var vec = startPos - preyPos;
