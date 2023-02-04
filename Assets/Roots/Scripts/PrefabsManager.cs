@@ -11,6 +11,7 @@ namespace Roots
         public Prey PreyPrefab;
         public EatPrey EatPreyPrefab;
         public BombBehaviour BombPrefab;
+        public BadDecisionBehaviour BadDecisionPrefab;
         
         void Awake()
         {

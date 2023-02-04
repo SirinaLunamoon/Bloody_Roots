@@ -45,7 +45,7 @@ namespace Roots
                     }
                     else if(!behaviour._isCenter)
                     {
-                        behaviour.Kill();
+                        behaviour.BadDecision();
                     }
                 }
                 else if(!behaviour.ActionBlocker.IsBlocked)

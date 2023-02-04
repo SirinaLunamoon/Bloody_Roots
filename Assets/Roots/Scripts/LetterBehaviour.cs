@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Roots.Mini;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Roots
@@ -21,6 +22,8 @@ namespace Roots
         public bool _isCenter;
         public KeyCode Letter => _letter;
 
+        private Color originalColor;
+
         public readonly EasyBlocker ActionBlocker = new();
         
         public bool HasRoot
@@ -38,6 +41,7 @@ namespace Roots
 
         private void Start()
         {
+            originalColor = _spriteRenderer.color;
             RootsManager.Instance.RegisterLetterBehaviour(this);
             if (_isCenter)
                 HasRoot = true;
@@ -54,6 +58,12 @@ namespace Roots
             // Destroy Prey
         }
 
+        public void BadDecision()
+        {
+            var badDecision = Instantiate(PrefabsManager.Instance.BadDecisionPrefab, transform.position, quaternion.identity);
+            badDecision.Setup(this, Kill);
+        }
+
         public void Kill()
         {
             var seq = DOTween.Sequence()
@@ -65,7 +75,7 @@ namespace Roots
                     OnDecayed?.Invoke(this);
                     OnDecayed = null;
                 })
-                .Append(_spriteRenderer.DOColor(Color.white, SetupManager.Access._timeToDecay))
+                .Append(_spriteRenderer.DOColor(originalColor, SetupManager.Access._timeToDecay))
                 .AppendCallback(() => ActionBlocker.RemoveBlocker("KILL"));
         }
 
