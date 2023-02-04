@@ -8,5 +8,6 @@ namespace Roots
         public float _timeToGrow;
         public float _timeToDecay;
         public float _timeToPoisoned;
+        public float _distRootToPrey = .5f;
     }
 }

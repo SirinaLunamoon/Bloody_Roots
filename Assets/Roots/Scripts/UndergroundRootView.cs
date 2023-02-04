@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -9,7 +10,7 @@ namespace Roots
     [RequireComponent(typeof(LineRenderer))]
     public class UndergroundRootView : MonoBehaviour
     {
-        public const int MAX_POS_COUNT = 4;
+        public const int MAX_POS_COUNT = 2;
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private Transform _targetTransform;
         [SerializeField] private List<KeyCode> _letters;

@@ -8,6 +8,8 @@ namespace Roots
         public static PrefabsManager Instance;
 
         [FormerlySerializedAs("_undergroundRootViewPrefab")] public UndergroundRootView UndergroundRootViewPrefab;
+        public Prey PreyPrefab;
+        public EatPrey EatPreyPrefab;
         
         void Awake()
         {

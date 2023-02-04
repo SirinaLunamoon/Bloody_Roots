@@ -42,6 +42,11 @@ namespace Roots
 
         public void EatPrey(Prey prey)
         {
+            prey.Halt();
+            var eat = Instantiate(PrefabsManager.Instance.EatPreyPrefab);
+            eat.Setup(this, prey, null);
+            //Destroy(prey.gameObject);
+            Debug.Log("POINTS!");
             // Play Eat Animation
             // Destroy Prey
         }
@@ -59,10 +64,6 @@ namespace Roots
                 })
                 .Append(_spriteRenderer.DOColor(Color.white, SetupManager.Access._timeToDecay))
                 .AppendCallback(() => ActionBlocker.RemoveBlocker("KILL"));
-
-            // Play Eat Animation
-            // StartDecay
-            // Kill with children
         }
 
         public void GrowChildRoot(LetterBehaviour other)

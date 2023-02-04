@@ -38,7 +38,7 @@ namespace Roots
             {
                 if (behaviour.HasRoot)
                 {
-                    var prey = PreyManager.Instance.GetPreyAtLocation(kc);
+                    var prey = PreyManager.Instance.GetPreyAtLocation(behaviour);
                     if (prey != null)
                     {
                         behaviour.EatPrey(prey);
