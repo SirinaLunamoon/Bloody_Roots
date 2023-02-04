@@ -16,7 +16,7 @@ namespace Roots
         public bool _isCenter;
         public KeyCode Letter => _letter;
 
-        private readonly EasyBlocker _actionBlocker = new();
+        public readonly EasyBlocker ActionBlocker = new();
         
         public bool HasRoot
         {
@@ -46,9 +46,12 @@ namespace Roots
 
         public void GrowChildRoot(LetterBehaviour other)
         {
+            
             // Play grow animation
             var newRoot = Instantiate(PrefabsManager.Instance.UndergroundRootViewPrefab);
-            newRoot.PerformGrow(this.transform, other.transform, () => Debug.Log("Callback"));
+            newRoot.PerformGrow(this.transform, other.transform, Callback);
+            this.ActionBlocker.AddBlocker(newRoot);
+            other.ActionBlocker.AddBlocker(newRoot);
             _children.Add(new ChildInfo()
             {
                 Children = other,
@@ -56,6 +59,13 @@ namespace Roots
             });
             // Mark other as hasRoot
             other.MarkRootAsParent(this);
+
+            void Callback()
+            {
+                this.ActionBlocker.RemoveBlocker(newRoot);
+                other.ActionBlocker.RemoveBlocker(newRoot);
+                other.HasRoot = true;
+            }
         }
 
         private void MarkRootAsParent(LetterBehaviour other)

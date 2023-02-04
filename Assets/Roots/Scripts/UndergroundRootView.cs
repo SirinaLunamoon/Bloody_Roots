@@ -27,7 +27,6 @@ namespace Roots
                 .OnComplete(() =>
                 {
                     onFinished?.Invoke();
-                    Debug.Log("Complete");
                 });
         }
     }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Roots
@@ -42,7 +43,7 @@ namespace Roots
                     {
                         behaviour.EatPrey(prey);
                     }
-                    else
+                    else if(!behaviour._isCenter)
                     {
                         behaviour.Kill();
                     }
@@ -64,9 +65,11 @@ namespace Roots
 
         private LetterBehaviour FindPossibleParentForKey(KeyCode kc)
         {
-            if (_letters.TryGetValue(KeyCode.G, out var result))
+            var possibilities = Neighbours.For(kc)
+                .Where(k => _letters.ContainsKey(k) && _letters[k].HasRoot).ToArray();
+            if (possibilities.Length > 0)
             {
-                return result;
+                return _letters[possibilities[Random.Range(0, possibilities.Length)]];
             }
 
             return null;
