@@ -10,6 +10,7 @@ namespace Roots.Mini
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Transform _left;
         [SerializeField] private Transform _right;
+        [SerializeField] private AudioSource _as;
 
         private Sequence _beatSequence;
 
@@ -21,6 +22,7 @@ namespace Roots.Mini
         void Start()
         {
             _beatSequence = DOTween.Sequence()
+                .AppendCallback(() => _as.PlayOneShot(AudioClipContainer.Instance.Heart))
                 .Join(transform.DOScale(Vector3.one * .8f, .3f))
                 .Join(transform.DOScale(Vector3.one * .72f, .9f))
                 .SetLink(gameObject)
@@ -30,6 +32,7 @@ namespace Roots.Mini
         public void GameOver()
         {
             _beatSequence.Kill();
+            _as.PlayOneShot(AudioClipContainer.Instance.HeartBroken);
             _left.gameObject.SetActive(true);
             _right.gameObject.SetActive(true);
             _spriteRenderer.enabled = false;

@@ -16,6 +16,8 @@ namespace Roots
         [SerializeField] private KeyCode _letter;
         private SpriteRenderer _spriteRenderer;
         private LetterBehaviour _parent;
+        
+        public bool IsPoisoned { get; private set; }
 
         private readonly List<ChildInfo> _children = new List<ChildInfo>();
 
@@ -64,6 +66,7 @@ namespace Roots
 
         private void Kill()
         {
+            IsPoisoned = false;
             ActionBlocker.RemoveBlocker(this);
             var seq = DOTween.Sequence()
                 .Append(_spriteRenderer.DOColor(Color.red, SetupManager.Access._timeToDecay))
@@ -157,6 +160,7 @@ namespace Roots
 
         void StartPoisoned()
         {
+            IsPoisoned = true;
             if (_isCenter)
             {
                 HeartBehaviour.Instance.GameOver();

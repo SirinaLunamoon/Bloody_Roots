@@ -13,6 +13,16 @@ namespace Roots
         private void Awake()
         {
             RootsManager.Instance = this;
+            
+            InvokeRepeating(nameof(CheckPoison), 2f, 2f);
+        }
+
+        void CheckPoison()
+        {
+            if (_letters.Values.Any(l => l.IsPoisoned) == false)
+            {
+                AudioClipContainer.Instance.StopHazard();
+            }
         }
 
         private void OnDestroy()

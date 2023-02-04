@@ -13,6 +13,8 @@ namespace Roots
         public List<AudioClip> Screams;
         public List<AudioClip> Grow;
         public List<AudioClip> Stab;
+        public AudioClip Heart;
+        public AudioClip HeartBroken;
         
         public static AudioClipContainer Instance;
 
@@ -38,7 +40,7 @@ namespace Roots
 
         public void PlayHazard()
         {
-            _hazardAudioSource.DOFade(1f, 2f);
+            _hazardAudioSource.DOFade(.5f, 3f);
         }
 
         public void StopHazard()
