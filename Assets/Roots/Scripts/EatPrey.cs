@@ -1,5 +1,7 @@
 using System;
 using DG.Tweening;
+using Roots.Energy;
+using Roots.Mini;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -10,11 +12,17 @@ namespace Roots
         [SerializeField] private LineRenderer _lr;
         [SerializeField] private Transform _followTransform;
         [SerializeField] private GameObject _additional;
-
+        [SerializeField] private AudioSource _as;
+        [SerializeField] private AudioSource _secAs;
 
         public void Setup(LetterBehaviour letter, Prey prey, Action onFinished)
         {
             Instantiate(_additional, prey.transform.position, quaternion.identity);
+            _secAs.PlayOneShot(AudioClipContainer.Instance.RandomStabClip());
+            DOTween.Sequence().PrependInterval(.3f).OnComplete(() =>
+                _as.PlayOneShot(AudioClipContainer.Instance.RandomScream())
+            );
+            EnergyManager.Instance.AddEnergy(SetupManager.Access.EnergyPerEnemy);
             var preyPos = prey.transform.position;
             var startPos = letter.transform.position;
             var vec = startPos - preyPos;
@@ -32,6 +40,7 @@ namespace Roots
 
             void Callback()
             {
+                ScoresBehaviour.Instance.AddPoint();
                 onFinished?.Invoke();
                 Invoke(nameof(KillMe), 1f);
             }

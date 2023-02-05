@@ -11,8 +11,9 @@ namespace Roots
         {
             this.transform.position = lb.transform.position;
             DOTween.Sequence()
-                .Append(transform.DOScale(Vector3.one, 3f))
+                .Append(transform.DOScale(Vector3.one * .5f, 3f))
                 .Join(_spriteRenderer.DOColor(Color.red, .3f))
+                .AppendCallback(AudioClipContainer.Instance.PlayHazard)
                 .Join(DOTween.Sequence()
                     .Append(_spriteRenderer.DOColor(Color.white, .3f))
                     .Append(_spriteRenderer.DOColor(Color.red, .3f))
@@ -31,7 +32,12 @@ namespace Roots
                     {
                         lb.Poison();
                     }
+                    else
+                    {
+                        AudioClipContainer.Instance.StopHazard();
+                    }
                     Destroy(gameObject);
+                    
                 });
         }
     }

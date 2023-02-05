@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Roots.Mini;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Roots
@@ -15,11 +16,15 @@ namespace Roots
         [SerializeField] private KeyCode _letter;
         private SpriteRenderer _spriteRenderer;
         private LetterBehaviour _parent;
+        
+        public bool IsPoisoned { get; private set; }
 
         private readonly List<ChildInfo> _children = new List<ChildInfo>();
 
         public bool _isCenter;
         public KeyCode Letter => _letter;
+
+        private Color originalColor;
 
         public readonly EasyBlocker ActionBlocker = new();
         
@@ -38,6 +43,7 @@ namespace Roots
 
         private void Start()
         {
+            originalColor = _spriteRenderer.color;
             RootsManager.Instance.RegisterLetterBehaviour(this);
             if (_isCenter)
                 HasRoot = true;
@@ -48,14 +54,20 @@ namespace Roots
             prey.Halt();
             var eat = Instantiate(PrefabsManager.Instance.EatPreyPrefab);
             eat.Setup(this, prey, null);
-            //Destroy(prey.gameObject);
             Debug.Log("POINTS!");
-            // Play Eat Animation
-            // Destroy Prey
         }
 
-        public void Kill()
+        public void BadDecision()
         {
+            ActionBlocker.AddBlocker(this);
+            var badDecision = Instantiate(PrefabsManager.Instance.BadDecisionPrefab, transform.position, quaternion.identity);
+            badDecision.Setup(this, Kill);
+        }
+
+        private void Kill()
+        {
+            IsPoisoned = false;
+            ActionBlocker.RemoveBlocker(this);
             var seq = DOTween.Sequence()
                 .Append(_spriteRenderer.DOColor(Color.red, SetupManager.Access._timeToDecay))
                 .OnStart(() => ActionBlocker.AddBlocker("KILL"))
@@ -65,7 +77,7 @@ namespace Roots
                     OnDecayed?.Invoke(this);
                     OnDecayed = null;
                 })
-                .Append(_spriteRenderer.DOColor(Color.white, SetupManager.Access._timeToDecay))
+                .Append(_spriteRenderer.DOColor(originalColor, SetupManager.Access._timeToDecay))
                 .AppendCallback(() => ActionBlocker.RemoveBlocker("KILL"));
         }
 
@@ -148,6 +160,7 @@ namespace Roots
 
         void StartPoisoned()
         {
+            IsPoisoned = true;
             if (_isCenter)
             {
                 HeartBehaviour.Instance.GameOver();
@@ -158,8 +171,15 @@ namespace Roots
             var par = _parent?._children.FirstOrDefault(c => c.Connection.LastLetter == this._letter);
             if (par != null)
             {
-                par.Connection.Poison(_parent.Poison);
-                StartDecay(this);
+                if (par.Children.ActionBlocker.IsBlocked == false)
+                {
+                    par.Connection.Poison(_parent.Poison);
+                    StartDecay(this);
+                }
+                else
+                {
+                    AudioClipContainer.Instance.StopHazard();
+                }
             }
             else
             {

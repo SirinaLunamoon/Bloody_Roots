@@ -15,5 +15,7 @@ namespace Roots
 
         public float _spawnBombMin = 10f;
         public float _spawnBombMax = 22f;
+
+        public float EnergyPerEnemy = 10;
     }
 }
