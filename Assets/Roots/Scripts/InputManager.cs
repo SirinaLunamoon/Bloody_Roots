@@ -6,7 +6,7 @@ namespace Roots
     {
         public static InputManager Instance { get; private set; }
 
-        private static KeyCode[] _listenToCodes =
+        private static KeyCode[] _listenToCodes = 
         {
             KeyCode.Alpha1,
             KeyCode.Alpha2,
