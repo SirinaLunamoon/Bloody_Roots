@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace Roots.Mini
         private int _points = 0;
         [SerializeField] private TMP_Text _outputText;
         public int Points => _points;
+        public event Action OnScore;
+
         private void Awake()
         {
             Instance = this;
@@ -26,6 +29,7 @@ namespace Roots.Mini
         {
             _points += 10;
             _outputText.text = string.Format(Format, _points);
+            OnScore?.Invoke();
         }
 
         void UpdateText()
