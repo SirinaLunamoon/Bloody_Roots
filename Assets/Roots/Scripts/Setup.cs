@@ -17,5 +17,6 @@ namespace Roots
         public float _spawnBombMax = 22f;
 
         public float EnergyPerEnemy = 10;
+        public float LostEnertyPerSecond = 3.5f;
     }
 }
