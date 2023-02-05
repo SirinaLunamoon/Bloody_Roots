@@ -21,4 +21,4 @@ MonoBehaviour:
   _spawnBombMin: 10
   _spawnBombMax: 22
   EnergyPerEnemy: 15
-  LostEnertyPerSecond: 3.8
+  LostEnertyPerSecond: 5
