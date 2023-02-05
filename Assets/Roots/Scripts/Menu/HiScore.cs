@@ -26,7 +26,6 @@ namespace Roots
 
         void Start()
         {
-            
             if(File.Exists(FileName))
             {
                 var t = File.ReadAllText(FileName);

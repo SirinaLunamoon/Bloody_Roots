@@ -1,6 +1,9 @@
+using System;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Sequence = DG.Tweening.Sequence;
 
 namespace Roots.Mini
 {
@@ -13,6 +16,7 @@ namespace Roots.Mini
         [SerializeField] private AudioSource _as;
 
         private Sequence _beatSequence;
+        public event Action OnGameOver;
 
         private void Awake()
         {
@@ -31,7 +35,8 @@ namespace Roots.Mini
 
         public void GameOver()
         {
-            HiScore.Instance.ProposeHighScore(ScoresBehaviour.Instance.Points);
+            if(HiScore.Instance)
+                HiScore.Instance.ProposeHighScore(ScoresBehaviour.Instance.Points);
             _beatSequence.Kill();
             _as.PlayOneShot(AudioClipContainer.Instance.HeartBroken);
             _left.gameObject.SetActive(true);
@@ -48,6 +53,8 @@ namespace Roots.Mini
                 .Join(_right.DOScale(Vector3.one * 5f, 3f));
 
             s1.Join(s2);
+            OnGameOver?.Invoke();
+            ;
         }
     }
 }
