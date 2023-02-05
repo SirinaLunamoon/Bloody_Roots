@@ -12,6 +12,8 @@ namespace Roots.Energy
         private float Val = 100f;
         private float ValMax = 100f;
 
+        public float CurrEnergyLostPerSecond;
+
         public float CurrVal => Val;
 
         private void Awake()
@@ -19,9 +21,28 @@ namespace Roots.Energy
             Instance = this;
         }
 
+        void Start()
+        {
+            CurrEnergyLostPerSecond = SetupManager.Access.InitialEnergyPerSecond;
+            ScoresBehaviour.Instance.OnScore += HandleOnScore;
+        }
+
+        void HandleOnScore()
+        {
+            CurrEnergyLostPerSecond += SetupManager.Access.EnergyPerEnemy;
+            if (CurrEnergyLostPerSecond > SetupManager.Access.MaxEnergyLostPerSecond)
+                CurrEnergyLostPerSecond = SetupManager.Access.MaxEnergyLostPerSecond;
+        }
+
+        private void OnDestroy()
+        {
+            if (ScoresBehaviour.Instance)
+                ScoresBehaviour.Instance.OnScore -= HandleOnScore;
+        }
+
         void Update()
         {
-            Val -= (SetupManager.Access.LostEnertyPerSecond * Time.deltaTime);
+            Val -= (CurrEnergyLostPerSecond * Time.deltaTime);
             if (Val <= 0)
             {
                 HeartBehaviour.Instance.GameOver();
