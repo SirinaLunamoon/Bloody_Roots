@@ -36,7 +36,7 @@ namespace Roots
         {
             float closest = SetupManager.Access._distRootToPrey + .1f;
             Prey found = null;
-            foreach (var prey in _registeredPreys)
+            foreach (var prey in _registeredPreys.Where(p => !p.IsKilled))
             {
                 var dist = Vector3.Distance(prey.transform.position, letterBehaviour.transform.position);
                 if (dist < closest)

@@ -10,7 +10,7 @@ namespace Roots.Mini
         
         private int _points = 0;
         [SerializeField] private TMP_Text _outputText;
-
+        public int Points => _points;
         private void Awake()
         {
             Instance = this;

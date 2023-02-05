@@ -5,6 +5,7 @@ namespace Roots
 {
     public class Prey : MonoBehaviour
     {
+        public bool IsKilled = false;
         [SerializeField] private float _speed = 1f;
 
         [SerializeField] private Sprite[] _killSeq;
@@ -44,6 +45,8 @@ namespace Roots
 
         public void Halt()
         {
+            GetComponent<PreyScaler>().enabled = false;
+            IsKilled = true;
             transform.localScale = Vector3.one * 3f;
             if(_animator)
                 _animator?.StopPlayback();

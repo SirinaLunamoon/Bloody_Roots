@@ -17,6 +17,7 @@ namespace Roots
 
         public void Setup(LetterBehaviour letter, Prey prey, Action onFinished)
         {
+            transform.localScale = Vector3.one * 2f;
             Instantiate(_additional, prey.transform.position, quaternion.identity);
             _secAs.PlayOneShot(AudioClipContainer.Instance.RandomStabClip());
             DOTween.Sequence().PrependInterval(.3f).OnComplete(() =>

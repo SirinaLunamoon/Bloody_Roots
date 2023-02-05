@@ -31,6 +31,7 @@ namespace Roots.Mini
 
         public void GameOver()
         {
+            HiScore.Instance.ProposeHighScore(ScoresBehaviour.Instance.Points);
             _beatSequence.Kill();
             _as.PlayOneShot(AudioClipContainer.Instance.HeartBroken);
             _left.gameObject.SetActive(true);

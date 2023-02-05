@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Roots
 {
-    
     public class HiScore : MonoBehaviour, IComparer<HiScoreEntry>
     {
         public int LastScore = 0;
@@ -30,7 +29,7 @@ namespace Roots
             
             if(File.Exists(FileName))
             {
-                var t = File.ReadAllText(POINTS_FILE_NAME);
+                var t = File.ReadAllText(FileName);
                 _hiScore = JsonUtility.FromJson<List<HiScoreEntry>>(t);
             }
             else
