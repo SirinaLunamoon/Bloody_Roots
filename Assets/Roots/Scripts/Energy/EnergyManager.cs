@@ -1,4 +1,3 @@
-using System;
 using Roots.Mini;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +12,8 @@ namespace Roots.Energy
         private float Val = 100f;
         private float ValMax = 100f;
 
+        public float CurrVal => Val;
+
         private void Awake()
         {
             Instance = this;
@@ -24,6 +25,7 @@ namespace Roots.Energy
             if (Val <= 0)
             {
                 HeartBehaviour.Instance.GameOver();
+                enabled = false;
             }
 
             _fillImage.fillAmount = (Val / ValMax);

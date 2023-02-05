@@ -74,6 +74,8 @@ namespace Roots
                 .AppendCallback(() =>
                 {
                     HasRoot = false;
+                    _parent?.RemoveConnection(this);
+                    this._children.Clear();
                     OnDecayed?.Invoke(this);
                     OnDecayed = null;
                 })
