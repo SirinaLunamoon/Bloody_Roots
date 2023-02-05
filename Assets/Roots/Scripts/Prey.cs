@@ -21,6 +21,7 @@ namespace Roots
         private float timeAlive = 0f;
         private void Update()
         {
+            
             var rotX = (Mathf.Sin(timeAlive * 15f)) * 8f;
             transform.localRotation = Quaternion.Euler(0f, 0f, rotX);
             timeAlive += Time.deltaTime;
@@ -31,7 +32,7 @@ namespace Roots
             var duration = Vector3.Distance(transform.position, target) / _speed;
             seq = DOTween.Sequence()
                 .SetLink(gameObject)
-                .Append(transform.DOMove(target, duration))
+                .Append(transform.DOMove(target, duration).SetEase(Ease.Linear))
                 .OnComplete(() => Destroy(gameObject));
         }
 
@@ -50,6 +51,7 @@ namespace Roots
             seq.Kill();
             DOTween.Sequence()
                 .SetLink(gameObject)
+                .AppendInterval(.01f)
                 .AppendCallback(() => _renderer.sprite = _killSeq[0])
                 .AppendInterval(.2f)
                 .AppendCallback(() => _renderer.sprite = _killSeq[1])

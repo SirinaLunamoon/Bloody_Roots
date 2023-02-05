@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6915284667594689738}
   - component: {fileID: 3674739681168623311}
+  - component: {fileID: 3253001740931353920}
   m_Layer: 0
   m_Name: Prey
   m_TagString: Untagged
@@ -53,6 +54,18 @@ MonoBehaviour:
   - {fileID: -2011389404, guid: ac600cae6af9d420fa3537e677af1478, type: 3}
   _renderer: {fileID: 9075948487901832083}
   _animator: {fileID: 8287089272050636343}
+--- !u!114 &3253001740931353920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166774793424530936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed7a42345ce14993b2b4b37dda48ea9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8912068013851997331
 PrefabInstance:
   m_ObjectHideFlags: 0
