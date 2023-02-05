@@ -20,7 +20,7 @@ namespace Roots.Energy
 
         void Update()
         {
-            Val -= (3.5f * Time.deltaTime);
+            Val -= (SetupManager.Access.LostEnertyPerSecond * Time.deltaTime);
             if (Val <= 0)
             {
                 HeartBehaviour.Instance.GameOver();

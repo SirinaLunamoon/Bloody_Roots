@@ -15,3 +15,10 @@ MonoBehaviour:
   _timeToGrow: 0.55
   _timeToDecay: 1
   _timeToPoisoned: 0.5
+  _distRootToPrey: 0.5
+  _spawnMax: 4
+  _spawnMin: 2.5
+  _spawnBombMin: 10
+  _spawnBombMax: 22
+  EnergyPerEnemy: 15
+  LostEnertyPerSecond: 3.8
